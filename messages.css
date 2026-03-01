@@ -143,3 +143,22 @@
 .messages-page .grass-strip {
   margin-top: auto;
 }
+
+
+.messages-list {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Adds space between chat entries */
+}
+
+.messages-entry {
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.05); /* Subtle box for each chat */
+  border-radius: 12px;
+  transition: background 0.2s;
+}
+
+.messages-entry:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
