@@ -132,6 +132,13 @@
         } else if (friendActionEl) {
           friendActionEl.innerHTML = '';
         }
+        var msgLink = document.getElementById('profile-modal-msg-link');
+        if (msgLink && viewedUid && me && me.uid !== viewedUid) {
+          msgLink.href = 'chat.html?with=' + encodeURIComponent(viewedUid);
+          msgLink.style.display = 'inline-block';
+        } else if (msgLink) {
+          msgLink.style.display = 'none';
+        }
       });
       gridEl.appendChild(item);
     });

@@ -3,35 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Messages – Canopy</title>
+  <title>Chat – Canopy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="messages.css" />
+  <link rel="stylesheet" href="chat.css" />
 </head>
-<body class="messages-page">
-  <header class="messages-header">
-    <a href="feed.html" class="messages-back-link" aria-label="Back to feed">
-      <span class="messages-back-arrow">←</span>
-    </a>
-    <section class="messages-banner">
-      <h1 class="messages-banner-title">Messages</h1>
-    </section>
+<body class="chat-page">
+  <header class="chat-header">
+    <a href="messages.html" class="chat-back-link" aria-label="Back to messages">←</a>
+    <h1 class="chat-title" id="chat-title">Chat</h1>
   </header>
 
-  <main class="messages-main">
-    <ul class="messages-list" id="messages-list" role="list">
-      <!-- Populated by messages.js -->
-    </ul>
+  <main class="chat-main">
+    <div class="chat-messages" id="chat-messages">
+      <p class="chat-loading" id="chat-loading">Loading…</p>
+    </div>
+    <form class="chat-form" id="chat-form">
+      <input type="text" class="chat-input" id="chat-input" placeholder="Type a message..." maxlength="500" autocomplete="off" />
+      <button type="submit" class="chat-send" id="chat-send">Send</button>
+    </form>
   </main>
-
-  <footer class="grass-strip" aria-hidden="true"></footer>
 
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
   <script src="firebase-config.js"></script>
-  <script src="messages.js"></script>
+  <script src="chat.js"></script>
 </body>
 </html>

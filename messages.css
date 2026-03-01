@@ -107,6 +107,31 @@
   background: var(--messages-bg);
   border: 2px solid var(--messages-border);
   flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.75rem;
+  color: var(--messages-text);
+}
+
+.messages-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.messages-loading,
+.messages-empty {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.45rem;
+  color: var(--messages-text);
+  padding: 1.5rem 0.5rem;
+  margin: 0;
+  text-align: center;
+  line-height: 1.6;
 }
 
 .messages-text {

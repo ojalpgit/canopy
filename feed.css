@@ -263,6 +263,10 @@
   opacity: 0.95;
 }
 
+.feed-profile-msg-btn {
+  margin-left: 0.5rem;
+}
+
 .feed-profile-friend-action {
   margin-bottom: 1rem;
   min-height: 2rem;
