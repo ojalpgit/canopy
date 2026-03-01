@@ -34,6 +34,95 @@
     return 'Member since ' + months[date.getMonth()] + ' ' + date.getFullYear();
   }
 
+  function nameFromEmail(email) {
+    if (!email || typeof email !== 'string') return '';
+    var local = email.split('@')[0];
+    return local ? local.charAt(0).toUpperCase() + local.slice(1).toLowerCase() : '';
+  }
+
+  function escapeHtml(s) {
+    if (s == null) return '';
+    var div = document.createElement('div');
+    div.textContent = s;
+    return div.innerHTML;
+  }
+
+  function loadFriendsAndRequests(db, uid) {
+    var requestsList = document.getElementById('profile-friend-requests-list');
+    var friendsList = document.getElementById('profile-friends-list');
+    if (!requestsList && !friendsList) return;
+
+    function renderRequests(incoming) {
+      if (!requestsList) return;
+      requestsList.innerHTML = '';
+      if (!incoming || incoming.length === 0) {
+        requestsList.innerHTML = '<p class="profile-requests-empty">No pending requests</p>';
+        return;
+      }
+      incoming.forEach(function (req) {
+        var row = document.createElement('div');
+        row.className = 'profile-friend-request-row';
+        row.innerHTML = '<span class="profile-friend-name" data-from-uid="' + escapeHtml(req.fromUid) + '">…</span><div class="profile-friend-actions"><button type="button" class="profile-btn profile-btn-accept" data-action="accept">Accept</button><button type="button" class="profile-btn profile-btn-decline" data-action="decline">Decline</button></div>';
+        var nameEl = row.querySelector('.profile-friend-name');
+        db.collection('users').doc(req.fromUid).get().then(function (snap) {
+          var d = snap.exists ? snap.data() : {};
+          var name = d.displayName || nameFromEmail(d.email) || 'Someone';
+          if (nameEl) nameEl.textContent = name;
+        });
+        row.querySelector('[data-action="accept"]').addEventListener('click', function () {
+          if (!window.CanopyFriends) return;
+          window.CanopyFriends.acceptRequest(db, req.fromUid, uid).then(function () { loadFriendsAndRequests(db, uid); });
+        });
+        row.querySelector('[data-action="decline"]').addEventListener('click', function () {
+          if (!window.CanopyFriends) return;
+          window.CanopyFriends.declineRequest(db, req.fromUid, uid).then(function () { loadFriendsAndRequests(db, uid); });
+        });
+        requestsList.appendChild(row);
+      });
+    }
+
+    function renderFriends(friendUids) {
+      if (!friendsList) return;
+      friendsList.innerHTML = '';
+      if (!friendUids || friendUids.length === 0) {
+        friendsList.innerHTML = '<p class="profile-friends-empty">No friends yet</p>';
+        return;
+      }
+      friendUids.forEach(function (friendUid) {
+        var row = document.createElement('div');
+        row.className = 'profile-friend-row';
+        row.innerHTML = '<span class="profile-friend-name">…</span>';
+        var nameEl = row.querySelector('.profile-friend-name');
+        db.collection('users').doc(friendUid).get().then(function (snap) {
+          var d = snap.exists ? snap.data() : {};
+          var name = d.displayName || nameFromEmail(d.email) || 'Unknown';
+          if (nameEl) nameEl.textContent = name;
+        });
+        friendsList.appendChild(row);
+      });
+    }
+
+    if (!window.CanopyFriends) {
+      if (requestsList) requestsList.innerHTML = '<p class="profile-requests-empty">No pending requests</p>';
+      if (friendsList) friendsList.innerHTML = '<p class="profile-friends-empty">No friends yet</p>';
+      return;
+    }
+
+    window.CanopyFriends.getIncomingRequests(db, uid).then(function (incoming) {
+      renderRequests(incoming);
+    }).catch(function () {
+      if (requestsList) requestsList.innerHTML = '<p class="profile-requests-empty">No pending requests</p>';
+    });
+
+    db.collection('users').doc(uid).get().then(function (snap) {
+      var data = snap.exists ? snap.data() : {};
+      var friends = Array.isArray(data.friends) ? data.friends : [];
+      renderFriends(friends);
+    }).catch(function () {
+      if (friendsList) friendsList.innerHTML = '<p class="profile-friends-empty">No friends yet</p>';
+    });
+  }
+
   function setAvatar(user, displayName) {
     if (!profileAvatar) return;
     profileAvatar.innerHTML = '';
@@ -105,6 +194,7 @@
         }
         if (profileBioEdit) profileBioEdit.hidden = true;
         if (profileEditBioBtn) profileEditBioBtn.style.display = 'inline-block';
+        loadFriendsAndRequests(db, user.uid);
       })
       .catch(function (err) {
         console.error('Profile load:', err);

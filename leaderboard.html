@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard – Canopy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="leaderboard.css" />
+</head>
+<body class="leaderboard-page">
+  <header class="leaderboard-header">
+    <a href="home.html" class="leaderboard-back-link" aria-label="Back to home">
+      <span class="leaderboard-back-arrow">←</span>
+    </a>
+    <div class="leaderboard-banner">
+      <h1 class="leaderboard-banner-title">Leaderboard</h1>
+    </div>
+  </header>
+
+  <main class="leaderboard-main">
+    <p class="leaderboard-subtitle">Most focus time</p>
+    <div class="leaderboard-list" id="leaderboard-list">
+      <p class="leaderboard-loading" id="leaderboard-loading">Loading…</p>
+    </div>
+  </main>
+
+  <footer class="grass-strip" aria-hidden="true"></footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="leaderboard.js"></script>
+</body>
+</html>

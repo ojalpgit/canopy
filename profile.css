@@ -287,6 +287,84 @@
   text-align: center;
 }
 
+.profile-friend-requests,
+.profile-friends {
+  width: 100%;
+  background: #E8DCC8;
+  border: 3px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 0.9rem;
+  box-shadow: var(--shadow-offset);
+  margin-bottom: 1.25rem;
+}
+
+.profile-friend-heading {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.5rem;
+  color: var(--border-dark);
+  margin: 0 0 0.6rem 0;
+  line-height: 1.5;
+}
+
+.profile-friend-requests-list,
+.profile-friends-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.profile-friend-request-row,
+.profile-friend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  background: var(--bg-cream);
+  border: 2px solid var(--border-dark);
+  border-radius: 6px;
+}
+
+.profile-friend-name {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.45rem;
+  color: var(--border-dark);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profile-friend-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.profile-friend-actions .profile-btn {
+  font-size: 0.4rem;
+  padding: 0.35rem 0.5rem;
+}
+
+.profile-friend-actions .profile-btn-accept {
+  background: var(--canopy-green);
+  color: #fff;
+}
+
+.profile-friend-actions .profile-btn-decline {
+  background: #8a6a5a;
+  color: var(--btn-text);
+}
+
+.profile-friends-empty,
+.profile-requests-empty {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.45rem;
+  color: #5C4A32;
+  padding: 0.5rem 0;
+  margin: 0;
+}
+
 .profile-badges {
   width: 100%;
   background: #E8DCC8;

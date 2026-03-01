@@ -34,6 +34,46 @@
     return div.innerHTML;
   }
 
+  function renderFriendAction(container, db, meUid, viewedUid, onUpdate) {
+    if (!container || !window.CanopyFriends) return;
+    container.innerHTML = '<span class="feed-friend-sent">Loading…</span>';
+    window.CanopyFriends.getFriendStatus(db, meUid, viewedUid).then(function (result) {
+      if (!container) return;
+      if (result.status === 'friend') {
+        container.innerHTML = '<span class="feed-friend-badges">Friends</span>';
+        return;
+      }
+      if (result.status === 'pending_sent') {
+        container.innerHTML = '<span class="feed-friend-sent">Request sent</span>';
+        return;
+      }
+      if (result.status === 'pending_received') {
+        container.innerHTML =
+          '<button type="button" class="feed-friend-btn feed-friend-accept" data-action="accept">Accept</button>' +
+          '<button type="button" class="feed-friend-btn feed-friend-decline" data-action="decline">Decline</button>';
+        container.querySelector('[data-action="accept"]').addEventListener('click', function () {
+          window.CanopyFriends.acceptRequest(db, viewedUid, meUid).then(function () { if (onUpdate) onUpdate(); renderFriendAction(container, db, meUid, viewedUid, onUpdate); });
+        });
+        container.querySelector('[data-action="decline"]').addEventListener('click', function () {
+          window.CanopyFriends.declineRequest(db, viewedUid, meUid).then(function () { if (onUpdate) onUpdate(); renderFriendAction(container, db, meUid, viewedUid, onUpdate); });
+        });
+        return;
+      }
+      container.innerHTML = '<button type="button" class="feed-friend-btn" data-action="add">Add friend</button>';
+      container.querySelector('[data-action="add"]').addEventListener('click', function () {
+        var btn = container.querySelector('[data-action="add"]');
+        if (btn) btn.disabled = true;
+        window.CanopyFriends.sendRequest(db, meUid, viewedUid).then(function () {
+          renderFriendAction(container, db, meUid, viewedUid, onUpdate);
+        }).catch(function () {
+          if (btn) btn.disabled = false;
+        });
+      });
+    }).catch(function () {
+      if (container) container.innerHTML = '';
+    });
+  }
+
   function renderCritters(critters) {
     var gridEl = document.getElementById('critters-grid');
     var profileName = document.getElementById('profile-modal-name');
@@ -42,6 +82,7 @@
     var profileOverlay = document.getElementById('profile-overlay');
     var profileClose = document.getElementById('profile-modal-close');
     var profileBackdrop = document.getElementById('profile-overlay-backdrop');
+    var friendActionEl = document.getElementById('profile-modal-friend-action');
 
     if (!gridEl) return;
 
@@ -81,6 +122,15 @@
         if (profileOverlay) {
           profileOverlay.hidden = false;
           document.body.classList.add('feed-modal-open');
+        }
+        var auth = firebase.auth();
+        var db = firebase.firestore();
+        var me = auth.currentUser;
+        var viewedUid = c.uid || c.id;
+        if (friendActionEl && me && viewedUid && me.uid !== viewedUid) {
+          renderFriendAction(friendActionEl, db, me.uid, viewedUid);
+        } else if (friendActionEl) {
+          friendActionEl.innerHTML = '';
         }
       });
       gridEl.appendChild(item);
