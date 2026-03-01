@@ -93,6 +93,13 @@
     return Math.round(km) + ' km away';
   }
 
+  function nameFromEmail(email) {
+    if (!email || typeof email !== 'string') return '';
+    var local = email.split('@')[0];
+    if (!local) return '';
+    return local.charAt(0).toUpperCase() + local.slice(1).toLowerCase();
+  }
+
   function run() {
     var gridEl = document.getElementById('critters-grid');
     if (!gridEl) return;
@@ -126,9 +133,10 @@
             if (now - updated > LOCATION_MAX_AGE_MS) return;
             var distanceKm = haversineKm(lat, lng, loc.latitude, loc.longitude);
             if (distanceKm > MAX_NEARBY_KM) return;
+            var name = data.displayName || nameFromEmail(data.email) || 'Unknown';
             users.push({
               uid: doc.id,
-              displayName: data.displayName || data.email || 'Unknown',
+              displayName: name,
               email: data.email,
               bio: data.bio,
               photoURL: data.photoURL,
@@ -166,10 +174,14 @@
           var lat = position.coords.latitude;
           var lng = position.coords.longitude;
           var userRef = db.collection('users').doc(user.uid);
-          userRef.set({
+          var payload = {
             location: new firebase.firestore.GeoPoint(lat, lng),
             locationUpdatedAt: firebase.firestore.FieldValue.serverTimestamp()
-          }, { merge: true })
+          };
+          if (user.displayName) payload.displayName = user.displayName;
+          if (user.email) payload.email = user.email;
+          if (user.photoURL) payload.photoURL = user.photoURL;
+          userRef.set(payload, { merge: true })
             .then(function () { fetchAndRenderNearby(lat, lng, user.uid); })
             .catch(function (err) {
               console.error('Update location:', err);
