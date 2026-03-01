@@ -44,6 +44,7 @@ body {
 
 /* Logo pill */
 .logo-pill {
+  margin-bottom: 4rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -75,8 +76,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
+  gap: 2rem; /* Increased from 1.25rem for more breathing room */
   flex: 1;
+  width: 100%;
 }
 
 .nav-btn {
@@ -84,7 +86,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 280px;
+  max-width: 200px;
   padding: 1.15rem 1.75rem;
   background: var(--btn-brown);
   color: var(--btn-text);
@@ -111,7 +113,7 @@ body {
 .grass-strip {
   display: block;           /* Ensures it acts as a layout block */
   width: 100%;
-  height: 40px;             /* This is your "Clipper" - nothing can go taller than this */
+  height: 84px;             /* This is your "Clipper" - nothing can go taller than this */
   background-image: url('assets/grass.png');
   background-repeat: repeat-x; 
   background-position: bottom left;
@@ -122,4 +124,23 @@ body {
   flex-shrink: 0;           
   overflow: hidden;         /* Prevents any bleed-through */
   border: none;
+}
+
+.main-logo {
+  width: 200px;          /* Adjust size as needed */
+  height: auto;
+  margin-top: 2rem; 
+  margin-bottom: 2rem;
+  image-rendering: pixelated; /* Keeps pixel art sharp */
+  filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.1)); /* Optional: subtle retro shadow */
+}
+
+/* Optional: Add a gentle float animation to the logo for that WOW factor */
+.main-logo {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
