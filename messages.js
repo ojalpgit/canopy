@@ -2,8 +2,7 @@
  * Messages list: show conversations for current user (real-time).
  * Firestore: conversations/{convId} with participants, lastMessage, lastAt;
  *            convId = sorted uids: uid1_uid2 (uid1 < uid2).
- * Index: In Firebase Console → Firestore → Indexes, add composite index on
- *        collection "conversations": participants (array-contains), lastAt (descending).
+ * Query uses array-contains only (no composite index required); sort by lastAt in memory.
  */
 (function () {
   'use strict';
@@ -30,9 +29,8 @@
     if (!listEl) return;
     listEl.innerHTML = '<p class="messages-loading">Loading…</p>';
 
-    var unsub = db.collection('conversations')
+    db.collection('conversations')
       .where('participants', 'array-contains', myUid)
-      .orderBy('lastAt', 'desc')
       .onSnapshot(
         function (snapshot) {
           listEl.innerHTML = '';
@@ -50,6 +48,11 @@
               lastMessage: d.lastMessage || '',
               lastAt: d.lastAt
             });
+          });
+          convs.sort(function (a, b) {
+            var ta = a.lastAt && (a.lastAt.toMillis ? a.lastAt.toMillis() : a.lastAt);
+            var tb = b.lastAt && (b.lastAt.toMillis ? b.lastAt.toMillis() : b.lastAt);
+            return (tb || 0) - (ta || 0);
           });
           convs.forEach(function (c) {
             var li = document.createElement('li');
