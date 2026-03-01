@@ -44,6 +44,12 @@
 
   <footer class="grass-strip" aria-hidden="true"></footer>
 
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="feed-nearby.js"></script>
+
   <!-- Full post overlay (author, title, full description) -->
   <div class="feed-overlay" id="post-overlay" role="dialog" aria-modal="true" aria-labelledby="post-modal-title" hidden>
     <div class="feed-overlay-backdrop" id="post-overlay-backdrop"></div>
@@ -55,12 +61,12 @@
     </div>
   </div>
 
-  <!-- Critter profile overlay -->
+  <!-- Critter profile overlay (avatar content set by feed-nearby.js when opening) -->
   <div class="feed-overlay" id="profile-overlay" role="dialog" aria-modal="true" aria-labelledby="profile-modal-name" hidden>
     <div class="feed-overlay-backdrop" id="profile-overlay-backdrop"></div>
     <div class="feed-modal feed-profile-modal">
       <button type="button" class="feed-modal-close" id="profile-modal-close" aria-label="Close">×</button>
-      <div class="feed-profile-avatar" id="profile-modal-avatar"></div>
+      <div class="feed-profile-avatar feed-profile-avatar-wrap" id="profile-modal-avatar"></div>
       <h2 class="feed-profile-name" id="profile-modal-name"></h2>
       <p class="feed-profile-bio" id="profile-modal-bio"></p>
       <a href="study.html" class="feed-profile-study-btn">Study together</a>
@@ -92,15 +98,7 @@
         }
       ];
 
-      var critters = [
-        { id: 'c1', name: 'Alex', bio: 'Into math & coding. Down to study or chat.' },
-        { id: 'c2', name: 'Sam', bio: 'Python and data science. Library regular.' },
-        { id: 'c3', name: 'Jordan', bio: 'Pre-med, loves study sessions.' },
-        { id: 'c4', name: 'Riley', bio: 'Design and front-end. Always up for focus time.' }
-      ];
-
       var feedEl = document.getElementById('feed-content');
-      var gridEl = document.getElementById('critters-grid');
       var postOverlay = document.getElementById('post-overlay');
       var postBackdrop = document.getElementById('post-overlay-backdrop');
       var postClose = document.getElementById('post-modal-close');
@@ -110,7 +108,6 @@
       var profileOverlay = document.getElementById('profile-overlay');
       var profileBackdrop = document.getElementById('profile-overlay-backdrop');
       var profileClose = document.getElementById('profile-modal-close');
-      var profileAvatar = document.getElementById('profile-modal-avatar');
       var profileName = document.getElementById('profile-modal-name');
       var profileBio = document.getElementById('profile-modal-bio');
 
@@ -155,32 +152,6 @@
         document.body.classList.remove('feed-modal-open');
       }
 
-      function renderCritters() {
-        if (!gridEl) return;
-        gridEl.innerHTML = '';
-        critters.forEach(function(c) {
-          var item = document.createElement('div');
-          item.className = 'critter-item';
-          item.innerHTML =
-            '<button type="button" class="critter-button" data-critter-id="' + escapeHtml(c.id) + '">' +
-              '<span class="critter-circle" aria-hidden="true"></span>' +
-              '<span class="critter-name">' + escapeHtml(c.name) + '</span>' +
-            '</button>';
-          var btn = item.querySelector('.critter-button');
-          btn.addEventListener('click', function() { openProfile(c); });
-          gridEl.appendChild(item);
-        });
-      }
-
-      function openProfile(critter) {
-        if (profileName) profileName.textContent = critter.name;
-        if (profileBio) profileBio.textContent = critter.bio || 'No bio yet.';
-        if (profileOverlay) {
-          profileOverlay.hidden = false;
-          document.body.classList.add('feed-modal-open');
-        }
-      }
-
       function closeProfile() {
         if (profileOverlay) profileOverlay.hidden = true;
         document.body.classList.remove('feed-modal-open');
@@ -192,7 +163,7 @@
       if (profileBackdrop) profileBackdrop.addEventListener('click', closeProfile);
 
       renderFeed();
-      renderCritters();
+      // Critters Near You are loaded by feed-nearby.js (geolocation + Firestore)
     })();
   </script>
 </body>

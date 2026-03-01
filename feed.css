@@ -328,6 +328,74 @@ body.feed-modal-open {
   line-height: 1.5;
 }
 
+.critter-distance {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.35rem;
+  color: var(--feed-primary-brown);
+  opacity: 0.85;
+  margin-top: 0.2rem;
+}
+
+.critter-circle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.critter-circle-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.critter-initial {
+  font-family: "Press Start 2P", cursive;
+  font-size: 2rem;
+  color: var(--feed-primary-brown);
+  line-height: 1;
+}
+
+.critters-nearby-message {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.5rem;
+  color: var(--feed-primary-brown);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin: 0;
+  line-height: 1.6;
+  grid-column: 1 / -1;
+}
+
+.critters-nearby-error {
+  opacity: 0.9;
+}
+
+.feed-profile-avatar-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feed-profile-avatar-wrap img.feed-profile-avatar-img,
+.feed-profile-avatar-wrap .feed-profile-avatar-initial {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.feed-profile-avatar-wrap .feed-profile-avatar-initial {
+  font-family: "Press Start 2P", cursive;
+  font-size: 2.5rem;
+  color: var(--feed-primary-brown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: none;
+}
+
 .feed-page .grass-strip {
   margin-top: auto;
 }
