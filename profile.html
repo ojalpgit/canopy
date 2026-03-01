@@ -25,10 +25,23 @@
 
   <main class="profile-main">
     <div class="profile-avatar-wrap">
-      <div class="profile-avatar" aria-hidden="true"></div>
+      <div class="profile-avatar" id="profile-avatar" aria-hidden="true"></div>
     </div>
-    <p class="profile-name">Your Name</p>
-    <p class="profile-member-since">Member since Feb 2026</p>
+    <p class="profile-name" id="profile-name">Your Name</p>
+    <p class="profile-member-since" id="profile-member-since">Member since …</p>
+
+    <section class="profile-bio-section">
+      <h2 class="profile-bio-heading">Bio</h2>
+      <p class="profile-bio-text" id="profile-bio-text"></p>
+      <div class="profile-bio-edit" id="profile-bio-edit" hidden>
+        <textarea id="profile-bio-input" class="profile-bio-textarea" placeholder="Write a short bio..." maxlength="200" rows="3"></textarea>
+        <div class="profile-bio-actions">
+          <button type="button" class="profile-btn profile-btn-save" id="profile-bio-save">Save</button>
+          <button type="button" class="profile-btn profile-btn-cancel" id="profile-bio-cancel">Cancel</button>
+        </div>
+      </div>
+      <button type="button" class="profile-btn profile-edit-bio-btn" id="profile-edit-bio-btn">Edit bio</button>
+    </section>
 
     <section class="profile-stats">
       <div class="profile-stat-card">
@@ -56,5 +69,11 @@
       </div>
     </section>
   </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="profile.js"></script>
 </body>
 </html>

@@ -98,10 +98,41 @@
 .profile-avatar {
   width: 108px;
   height: 108px;
+  min-width: 108px;
+  min-height: 108px;
   border-radius: 50%;
   background: #E8DCC8;
   border: 3px solid var(--border-dark);
   box-shadow: var(--shadow-offset);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.profile-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-avatar-initial {
+  font-family: "Press Start 2P", cursive;
+  font-size: 2.5rem;
+  color: var(--border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
 }
 
 .profile-name {
@@ -117,9 +148,108 @@
   font-family: "Press Start 2P", cursive;
   font-size: 0.5rem;
   color: #5C4A32;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1rem 0;
   text-align: center;
   line-height: 1.5;
+}
+
+/* Bio section – same card style as stats/badges */
+.profile-bio-section {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: #E8DCC8;
+  border: 3px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 0.9rem;
+  box-shadow: var(--shadow-offset);
+}
+
+.profile-bio-heading {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.5rem;
+  color: var(--border-dark);
+  margin: 0 0 0.6rem 0;
+  line-height: 1.5;
+}
+
+.profile-bio-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.45rem;
+  color: #5C4A32;
+  margin: 0 0 0.6rem 0;
+  line-height: 1.6;
+  min-height: 1.5em;
+}
+
+.profile-bio-edit {
+  margin-bottom: 0.6rem;
+}
+
+.profile-bio-textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.45rem;
+  border: 3px solid var(--border-dark);
+  border-radius: 6px;
+  background: var(--bg-cream);
+  color: var(--border-dark);
+  resize: vertical;
+  margin-bottom: 0.6rem;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.profile-bio-textarea::placeholder {
+  color: #8a7a6a;
+}
+
+.profile-bio-textarea:focus {
+  outline: none;
+  border-color: var(--grass-dark);
+}
+
+.profile-bio-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.profile-btn {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border: 3px solid var(--border-dark);
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: var(--shadow-offset);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.profile-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.profile-btn-save {
+  background: var(--canopy-green);
+  color: #fff;
+}
+
+.profile-btn-cancel {
+  background: var(--btn-brown);
+  color: var(--btn-text);
+}
+
+.profile-edit-bio-btn {
+  background: var(--btn-brown);
+  color: var(--btn-text);
+}
+
+.profile-edit-bio-btn:hover,
+.profile-btn-save:hover,
+.profile-btn-cancel:hover {
+  opacity: 0.95;
 }
 
 .profile-stats {

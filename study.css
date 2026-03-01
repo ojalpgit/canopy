@@ -42,6 +42,27 @@
   margin: 0;
 }
 
+.study-coins {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.6rem;
+  color: #5C4A32;
+  background: rgba(255, 220, 120, 0.9);
+  padding: 0.35rem 0.6rem;
+  border-radius: 4px;
+  border: 2px solid var(--border-dark);
+}
+
+.study-coins-icon {
+  font-size: 0.85rem;
+}
+
 @media (min-width: 380px) {
   .study-title {
     font-size: 1rem;
@@ -127,7 +148,15 @@
   color: #fff;
 }
 
-/* Start timer button */
+/* Timer actions: Start, Pause, Stop */
+.study-timer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
 .study-start-btn {
   font-family: "Press Start 2P", cursive;
   font-size: 0.55rem;
@@ -137,7 +166,6 @@
   border: 2px solid var(--border-dark);
   border-radius: 8px;
   cursor: pointer;
-  margin-bottom: 1.25rem;
   box-shadow: var(--shadow-offset);
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
@@ -150,6 +178,32 @@
 .study-start-btn:disabled {
   opacity: 0.9;
   cursor: default;
+}
+
+.study-btn {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  padding: 0.9rem 1.2rem;
+  border: 2px solid var(--border-dark);
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.study-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.study-pause-btn {
+  background: #8B6914;
+  color: #fff;
+}
+
+.study-stop-btn {
+  background: #8B3A3A;
+  color: #fff;
 }
 
 .study-plant {
@@ -218,6 +272,10 @@
   background: #E8DDCF;
   border: 3px solid var(--btn-brown);
   margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .studying-name {
