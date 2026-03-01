@@ -165,7 +165,8 @@
       // 3. Set the HTML (Added the border and spacing for readability)
       article.innerHTML = `
         <div style="border-bottom: 2px solid rgba(255,255,255,0.1); margin-bottom: 10px; padding-bottom: 5px;">
-          <h2 class="feed-card-title" style="line-height: 1.5;">${escapeHtml(p.title || "Untitled")}</h2>
+          <h2 class="feed-card-title" style="line-height: 1.5; margin-bottom: 4px;">${escapeHtml(p.title || "Untitled")}</h2>
+          <p style="font-size: 7px; color: #EBE6D3; opacity: 0.8; margin: 0;">Posted By: ${escapeHtml(p.authorName || "Anonymous")}</p>
         </div>
         <p class="feed-card-desc" style="line-height: 1.6;">${escapeHtml(preview(p.description || ""))} </p>
       `;
