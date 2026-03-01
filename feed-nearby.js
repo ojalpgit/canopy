@@ -100,9 +100,20 @@
     return local.charAt(0).toUpperCase() + local.slice(1).toLowerCase();
   }
 
+  function closeProfileModal() {
+    var profileOverlay = document.getElementById('profile-overlay');
+    if (profileOverlay) profileOverlay.hidden = true;
+    document.body.classList.remove('feed-modal-open');
+  }
+
   function run() {
     var gridEl = document.getElementById('critters-grid');
     if (!gridEl) return;
+
+    var profileClose = document.getElementById('profile-modal-close');
+    var profileBackdrop = document.getElementById('profile-overlay-backdrop');
+    if (profileClose) profileClose.addEventListener('click', closeProfileModal);
+    if (profileBackdrop) profileBackdrop.addEventListener('click', closeProfileModal);
 
     if (typeof firebase === 'undefined' || !firebase.auth || !firebase.firestore) {
       setGridMessage('Firebase not loaded.', true);
