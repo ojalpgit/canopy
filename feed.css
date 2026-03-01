@@ -399,3 +399,51 @@ body.feed-modal-open {
 .feed-page .grass-strip {
   margin-top: auto;
 }
+
+
+#feed-content {
+  max-height: 300px !important;
+  overflow-y: auto;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 4px solid #6D4C3D;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  display: flex; 
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feed-card-title {
+  font-size: 10px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  color: #EBE6D3;
+}
+
+.feed-card-desc {
+  font-size: 8px;
+  line-height: 1.6;
+  color: #D3CBB8;
+}
+
+#feed-content::-webkit-scrollbar {
+  width: 10px;
+}
+#feed-content::-webkit-scrollbar-track {
+  background: #EBE6D3;
+}
+#feed-content::-webkit-scrollbar-thumb {
+  background: #6D4C3D;
+  border: 2px solid #EBE6D3;
+}
+
+/* Targets ONLY the title of the creation box */
+#create-box-header {
+  font-family: "Press Start 2P", cursive;
+  font-size: 11px;           /* Large enough to read clearly */
+  line-height: 1.8;          /* Spacing between pixel rows to prevent "mush" */
+  color: #6D4C3D;            /* Dark brown for high contrast on light background */
+  text-align: center;
+  margin: 0 0 10px 0;
+}
