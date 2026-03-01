@@ -1,0 +1,16 @@
+/* Sign up page – Figma node 59:159 (Full Name, Email, Password, Sign up button) */
+.signup-page .signup-screen {
+  padding-top: 2rem;
+}
+
+.signup-form .login-label {
+  margin-top: 0.6rem;
+}
+
+.signup-form .login-label:first-of-type {
+  margin-top: 0;
+}
+
+.signup-form .login-submit {
+  margin-top: 1.5rem;
+}

@@ -1,0 +1,77 @@
+/* Welcome / first-time front page – Figma node 60:4 */
+.welcome-page {
+  background: #F9F3E2;
+}
+
+.welcome-screen {
+  width: 100%;
+  max-width: 400px;
+  min-height: 100vh;
+  padding: 3rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-logo-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 2.5rem;
+  border: 3px solid var(--border-dark);
+  border-radius: 9999px;
+  background: transparent;
+  margin-bottom: 3.5rem;
+}
+
+.welcome-logo-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1.4rem;
+  color: #52AC52;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 380px) {
+  .welcome-logo-text {
+    font-size: 1.65rem;
+  }
+}
+
+.welcome-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 280px;
+}
+
+.welcome-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1.2rem 1.75rem;
+  background: #784D32;
+  color: #fff;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  box-shadow: var(--shadow-offset);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.welcome-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.welcome-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}

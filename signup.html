@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign up – Canopy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="welcome.css" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body class="welcome-page login-page signup-page">
+  <main class="welcome-screen login-screen signup-screen">
+    <a href="index.html" class="login-back-link" aria-label="Back">←</a>
+    <div class="welcome-logo-pill login-logo-pill" aria-hidden="true">
+      <span class="welcome-logo-text">Canopy</span>
+    </div>
+    <form id="signup-form" class="login-form signup-form" novalidate>
+      <label class="login-label" for="signup-name">Full Name</label>
+      <input
+        type="text"
+        id="signup-name"
+        class="login-input"
+        placeholder="Your name"
+        autocomplete="name"
+        required
+      />
+      <span id="signup-name-error" class="login-error" aria-live="polite"></span>
+
+      <label class="login-label" for="signup-email">Email (@wisc.edu)</label>
+      <input
+        type="email"
+        id="signup-email"
+        class="login-input"
+        placeholder="you@wisc.edu"
+        autocomplete="email"
+        required
+      />
+      <span id="signup-email-error" class="login-error" aria-live="polite"></span>
+
+      <label class="login-label" for="signup-password">Password</label>
+      <input
+        type="password"
+        id="signup-password"
+        class="login-input"
+        placeholder="6+ characters"
+        autocomplete="new-password"
+        required
+        minlength="6"
+      />
+      <span id="signup-password-error" class="login-error" aria-live="polite"></span>
+
+      <button type="submit" class="welcome-btn login-submit" id="signup-submit">Sign up</button>
+      <p id="signup-firebase-error" class="login-error login-error-block" aria-live="assertive"></p>
+    </form>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="signup.js"></script>
+</body>
+</html>
