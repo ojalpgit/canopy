@@ -1,0 +1,199 @@
+/* Profile page – Figma design */
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding-bottom: 1.75rem;
+}
+
+.profile-header {
+  width: 100%;
+  max-width: 400px;
+  padding: 1.15rem 1.75rem 0;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.profile-back-link {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--border-dark);
+  text-decoration: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  padding: 0.3rem;
+}
+
+.profile-back-link:hover {
+  opacity: 0.8;
+}
+
+.profile-back-arrow {
+  display: block;
+}
+
+.profile-banner {
+  background: var(--btn-brown);
+  border: 3px solid var(--border-dark);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 0.9rem 1.75rem;
+  box-shadow: var(--shadow-offset);
+}
+
+.profile-banner-title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.85rem;
+  color: var(--btn-text);
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 380px) {
+  .profile-banner-title {
+    font-size: 1rem;
+  }
+}
+
+.profile-settings-link {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--border-dark);
+  text-decoration: none;
+  font-size: 1.35rem;
+  line-height: 1;
+  padding: 0.3rem;
+}
+
+.profile-settings-link:hover {
+  opacity: 0.8;
+}
+
+.profile-settings-icon {
+  display: block;
+}
+
+.profile-main {
+  width: 100%;
+  max-width: 400px;
+  padding: 0 1.75rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-avatar-wrap {
+  margin-bottom: 1rem;
+}
+
+.profile-avatar {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: #E8DCC8;
+  border: 3px solid var(--border-dark);
+  box-shadow: var(--shadow-offset);
+}
+
+.profile-name {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.7rem;
+  color: var(--border-dark);
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.profile-member-since {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.5rem;
+  color: #5C4A32;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 0.9rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.profile-stat-card {
+  flex: 1;
+  background: var(--btn-brown);
+  border: 3px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 0.9rem;
+  box-shadow: var(--shadow-offset);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile-stat-label {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.5rem;
+  color: var(--btn-text);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.profile-stat-value {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.85rem;
+  color: #fff;
+  text-align: center;
+}
+
+.profile-badges {
+  width: 100%;
+  background: #E8DCC8;
+  border: 3px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 0.9rem;
+  box-shadow: var(--shadow-offset);
+}
+
+.profile-badges-heading {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  color: var(--border-dark);
+  margin: 0 0 0.9rem 0;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.profile-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+
+.profile-badge-slot {
+  aspect-ratio: 1;
+  background: #E8DCC8;
+  border: 2px solid var(--border-dark);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.profile-badge-icon {
+  font-size: 1.4rem;
+  color: #9A9A9A;
+  line-height: 1;
+}

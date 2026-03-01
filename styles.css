@@ -1,0 +1,131 @@
+/* Canopy – pixel-art nature theme */
+:root {
+  --bg-cream: #F5F0E1;
+  --canopy-green: #3D8C3D;
+  --btn-brown: #7B4B2E;
+  --btn-text: #E8E0D0;
+  --border-dark: #2C2416;
+  --grass-dark: #2D4A2D;
+  --grass-mid: #3D8C3D;
+  --grass-light: #5BA35B;
+  --grass-darker: #2C3D2C;
+  --shadow-offset: 3px 3px 0 rgba(0, 0, 0, 0.25);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Press Start 2P", cursive;
+  background: var(--bg-cream);
+  color: var(--border-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.screen {
+  width: 100%;
+  max-width: 400px;
+  min-height: 100vh;
+  padding: 2.25rem 1.75rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo pill */
+.logo-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.15rem 2.25rem;
+  border: 3px solid var(--border-dark);
+  border-radius: 9999px;
+  background: var(--bg-cream);
+  text-decoration: none;
+  margin-bottom: 2.75rem;
+  box-shadow: var(--shadow-offset);
+}
+
+.logo-text {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1.35rem;
+  color: var(--canopy-green);
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 380px) {
+  .logo-text {
+    font-size: 1.6rem;
+  }
+}
+
+/* Nav buttons */
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  flex: 1;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 280px;
+  padding: 1.15rem 1.75rem;
+  background: var(--btn-brown);
+  color: var(--btn-text);
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  box-shadow: var(--shadow-offset);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.nav-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.nav-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Pixel grass strip – dense foliage texture */
+.grass-strip {
+  width: 100%;
+  height: 60px;
+  margin-top: auto;
+  background-color: var(--grass-dark);
+  background-image:
+    linear-gradient(90deg,
+      var(--grass-dark) 0px,
+      var(--grass-mid) 4px,
+      var(--grass-light) 8px,
+      var(--grass-dark) 12px,
+      var(--grass-mid) 16px,
+      var(--grass-darker) 20px);
+  background-size: 24px 56px;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  border-top: 2px solid var(--border-dark);
+}

@@ -1,0 +1,519 @@
+/* Your Den page – pixel den + decorate palette */
+.den-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1.25rem;
+}
+
+.den-header {
+  width: 100%;
+  max-width: 400px;
+  padding: 1.15rem 1.75rem 0.6rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.back-link {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--border-dark);
+  text-decoration: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  padding: 0.3rem;
+}
+
+.back-link:hover {
+  opacity: 0.8;
+}
+
+.back-arrow {
+  display: block;
+}
+
+.den-title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.85rem;
+  color: #5C4A32;
+  text-shadow: 2px 2px 0 rgba(44, 36, 22, 0.3);
+  margin: 0;
+}
+
+.den-coins {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.6rem;
+  color: #5C4A32;
+  background: rgba(255, 220, 120, 0.9);
+  padding: 0.35rem 0.6rem;
+  border-radius: 4px;
+  border: 2px solid var(--border-dark);
+}
+
+.den-coins-icon {
+  font-size: 0.85rem;
+}
+
+@media (min-width: 380px) {
+  .den-title {
+    font-size: 1rem;
+  }
+}
+
+.den-main {
+  width: 100%;
+  max-width: 400px;
+  padding: 0 1.75rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Den preview scenes */
+.den-preview-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.den-scene {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.den-plot {
+  position: relative;
+  aspect-ratio: 1;
+  max-height: 200px;
+  background: var(--grass-mid);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-offset);
+  border: 3px solid var(--grass-dark);
+}
+
+.den-grass {
+  position: absolute;
+  inset: 12px;
+  background: var(--grass-light);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* Garden grid for placement – tilted isometric-style, no gaps */
+.den-garden-grid {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 70.71%;
+  height: 70.71%;
+  margin-left: -35.355%;
+  margin-top: -35.355%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0;
+  z-index: 10;
+  pointer-events: auto;
+  transform: rotate(-45deg);
+  transform-origin: center center;
+}
+
+.garden-cell {
+  background: rgba(91, 163, 91, 0.35);
+  border: none;
+  min-height: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin: -1px;
+}
+
+.garden-cell:hover {
+  background: rgba(91, 163, 91, 0.55);
+}
+
+.garden-cell-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  pointer-events: none;
+  transform: rotate(45deg);
+  transform-origin: center center;
+}
+
+.garden-cell-layer-1 {
+  z-index: 1;
+}
+
+.garden-cell-decoration-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  vertical-align: bottom;
+}
+
+.den-placement-hint {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.5rem;
+  color: #5C4A32;
+  margin: 0.6rem 0 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.den-bushes {
+  position: absolute;
+  background: var(--grass-dark);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.den-bushes-left {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 16px;
+}
+
+.den-bushes-right {
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 16px;
+}
+
+.den-bushes-top {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 16px;
+}
+
+.den-bridge {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 24px;
+  background: #8B5A3C;
+  border: 2px solid #6B3A1C;
+  border-radius: 0 4px 4px 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.den-flowers {
+  position: absolute;
+  left: 20px;
+  bottom: 24px;
+  width: 32px;
+  height: 24px;
+  background: linear-gradient(135deg, #E87B7B 0%, #C95A9A 50%, #F0A050 100%);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.den-avatar-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.den-avatar-label {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  color: #fff;
+  background: rgba(0,0,0,0.6);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+.den-avatar {
+  width: 28px;
+  height: 28px;
+  background: #4A4A4A;
+  border: 2px solid #2C2C2C;
+  border-radius: 6px;
+}
+
+/* Decorate section */
+.decorate-section {
+  width: 100%;
+}
+
+.decorate-heading {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.7rem;
+  color: #5C4A32;
+  text-shadow: 1px 1px 0 rgba(44, 36, 22, 0.25);
+  margin: 0 0 0.9rem 0;
+  text-align: left;
+}
+
+.tile-palette {
+  background: var(--btn-brown);
+  border: 3px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 0.75rem;
+  box-shadow: var(--shadow-offset);
+}
+
+.tile-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tile-row:last-child {
+  margin-bottom: 0;
+}
+
+.tile {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  border: 2px solid rgba(0,0,0,0.2);
+  flex-shrink: 0;
+  image-rendering: pixelated;
+}
+
+/* Row 1 – ground/terrain */
+.tile-grass       { background: var(--grass-light); }
+.tile-water       { background: #5B9BD5; }
+.tile-stone       { background: #9A9A9A; }
+.tile-grass-alt   { background: var(--grass-mid); }
+.tile-dirt        { background: #8B5A3C; }
+.tile-cracked     { background: #5C4033; }
+.tile-pebble      { background: #7A7A7A; }
+
+/* Row 2 – plants/nature */
+.tile-bush-purple { background: #8B5A9A; }
+.tile-bush-green  { background: var(--grass-dark); }
+.tile-log         { background: #6B4423; }
+.tile-bush        { background: var(--grass-mid); }
+.tile-berries     { background: #C03030; }
+.tile-flowers     { background: linear-gradient(135deg, #E87B7B, #C95A9A, #F0A050); }
+.tile-dry         { background: #7A8B5A; }
+
+/* Row 3 – dark/water tiles */
+.tile-dark-1 { background: #2D4A5C; }
+.tile-dark-2 { background: #3D5A6C; }
+.tile-dark-3 { background: #2C3D4A; }
+.tile-dark-4 { background: #354A5C; }
+.tile-dark-5 { background: #3A5566; }
+.tile-dark-6 { background: #2E4555; }
+.tile-dark-7 { background: #334D5C; }
+
+/* Coins and buttons */
+.den-btn {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  padding: 0.45rem 0.6rem;
+  background: var(--btn-brown);
+  color: var(--btn-text);
+  border: 2px solid var(--border-dark);
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.den-btn:hover {
+  opacity: 0.95;
+}
+
+.den-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Decoration shop */
+.decoration-shop {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
+  gap: 0.6rem;
+  background: var(--btn-brown);
+  border: 3px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 0.9rem;
+  box-shadow: var(--shadow-offset);
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.shop-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+.shop-item-owned {
+  opacity: 0.85;
+}
+
+.shop-item-img-wrap {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--grass-light);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.shop-item-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.shop-item-name {
+  font-size: 0.5rem;
+  color: var(--btn-text);
+  text-align: center;
+  word-break: break-all;
+}
+
+.shop-item-owned-label {
+  font-size: 0.45rem;
+  color: #9EE89E;
+}
+
+.den-btn-buy {
+  font-size: 0.5rem;
+  padding: 0.3rem 0.45rem;
+}
+
+/* My decorations – place in garden */
+.my-decorations-section {
+  margin-top: 0.75rem;
+}
+
+.place-mode-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.den-btn-remove {
+  background: #6B3A1C;
+}
+
+.den-btn-remove[aria-pressed="true"] {
+  background: var(--border-dark);
+  color: var(--btn-text);
+}
+
+.layer-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.layer-label {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.5rem;
+  color: #5C4A32;
+}
+
+.den-btn-layer {
+  font-size: 0.5rem;
+  padding: 0.35rem 0.5rem;
+}
+
+.den-btn-layer.active {
+  background: var(--canopy-green);
+  border-color: var(--grass-dark);
+}
+
+.place-mode-status {
+  font-size: 0.5rem;
+  color: #5C4A32;
+  line-height: 1.5;
+}
+
+.my-decorations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  min-height: 58px;
+  padding: 0.6rem;
+  background: var(--grass-mid);
+  border: 2px solid var(--grass-dark);
+  border-radius: 8px;
+}
+
+.my-dec-item {
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  background: var(--grass-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.15s, transform 0.1s;
+}
+
+.my-dec-item:hover {
+  border-color: var(--border-dark);
+}
+
+.my-dec-item-selected {
+  border-color: var(--canopy-green);
+  box-shadow: 0 0 0 2px var(--canopy-green);
+}
+
+.my-dec-item-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}

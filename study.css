@@ -1,0 +1,232 @@
+/* Study page – focus mode with plant, timer, studying with */
+.study-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding-bottom: 0;
+}
+
+.study-header {
+  width: 100%;
+  max-width: 400px;
+  padding: 1.15rem 1.75rem 0.6rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.study-header .back-link {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--border-dark);
+  text-decoration: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  padding: 0.3rem;
+}
+
+.study-header .back-link:hover {
+  opacity: 0.8;
+}
+
+.study-title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.85rem;
+  color: #5C4A32;
+  text-shadow: 2px 2px 0 rgba(44, 36, 22, 0.3);
+  margin: 0;
+}
+
+@media (min-width: 380px) {
+  .study-title {
+    font-size: 1rem;
+  }
+}
+
+.study-main {
+  width: 100%;
+  max-width: 400px;
+  padding: 0 1.75rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.study-plant-wrap {
+  margin-bottom: 1.25rem;
+}
+
+/* Who's nearby */
+.study-nearby {
+  width: 100%;
+  max-width: 280px;
+  margin-bottom: 1.5rem;
+}
+
+.study-nearby-heading {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  color: var(--border-dark);
+  margin: 0 0 0.6rem 0;
+  line-height: 1.5;
+}
+
+.study-nearby-hint {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.45rem;
+  color: var(--border-dark);
+  margin: 0 0 0.6rem 0;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.study-nearby-hint.study-nearby-loading {
+  opacity: 0.7;
+}
+
+.study-nearby-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+.study-nearby-item {
+  margin: 0;
+}
+
+.study-nearby-btn {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--btn-brown);
+  color: var(--btn-text);
+  border: 2px solid var(--border-dark);
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.study-nearby-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.study-nearby-item.selected .study-nearby-btn {
+  background: var(--canopy-green);
+  color: #fff;
+}
+
+/* Start timer button */
+.study-start-btn {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  padding: 0.9rem 1.4rem;
+  background: var(--canopy-green);
+  color: #fff;
+  border: 2px solid var(--border-dark);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-offset);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.study-start-btn:hover:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.study-start-btn:disabled {
+  opacity: 0.9;
+  cursor: default;
+}
+
+.study-plant {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  width: 88px;
+  height: auto;
+}
+
+@media (min-width: 380px) {
+  .study-plant {
+    width: 104px;
+  }
+}
+
+/* Time Elapsed box */
+.time-elapsed-box {
+  width: 100%;
+  max-width: 280px;
+  background: #7A4C32;
+  border: 3px solid var(--border-dark);
+  border-radius: 8px;
+  padding: 1.15rem 1.4rem;
+  margin-bottom: 1.75rem;
+  box-shadow: var(--shadow-offset);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.time-elapsed-label {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  color: #fff;
+}
+
+.time-elapsed-value {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+/* Studying With */
+.studying-with {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.studying-with-heading {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  color: var(--border-dark);
+  margin: 0 0 0.9rem 0;
+  line-height: 1.5;
+}
+
+.studying-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: #E8DDCF;
+  border: 3px solid var(--btn-brown);
+  margin-bottom: 0.6rem;
+}
+
+.studying-name {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  color: var(--border-dark);
+  line-height: 1.5;
+}
+
+.study-page .grass-strip {
+  margin-top: auto;
+}

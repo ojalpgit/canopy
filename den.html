@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Den – Canopy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="den.css" />
+</head>
+<body class="den-page">
+  <header class="den-header">
+    <a href="index.html" class="back-link" aria-label="Back to home">
+      <span class="back-arrow">←</span>
+    </a>
+    <h1 class="den-title">Your Den</h1>
+    <div class="den-coins" aria-label="Coins">
+      <span class="den-coins-icon">🪙</span>
+      <span id="coin-count" class="den-coins-value">0</span>
+    </div>
+  </header>
+
+  <main class="den-main">
+    <section class="den-preview-wrap">
+      <div class="den-scene den-scene-active">
+        <div class="den-plot" id="garden-canvas">
+          <div class="den-grass"></div>
+          <div class="den-garden-grid" id="garden-grid" aria-label="Garden placement area">
+            <!-- 6x6 grid cells filled by JS -->
+          </div>
+          <div class="den-bushes den-bushes-left"></div>
+          <div class="den-bushes den-bushes-right"></div>
+          <div class="den-bushes den-bushes-top"></div>
+          <div class="den-bridge"></div>
+          <div class="den-avatar-wrap">
+            <span class="den-avatar-label">User</span>
+            <div class="den-avatar"></div>
+          </div>
+        </div>
+        <p class="den-placement-hint" id="placement-hint">Tap "Place in garden" then tap a decoration to place, then tap a grid cell.</p>
+      </div>
+    </section>
+
+    <section class="decorate-section">
+      <h2 class="decorate-heading">Decorations shop</h2>
+      <div class="decoration-shop" id="decoration-shop">
+        <!-- Filled by JS from assets/decorationImages -->
+      </div>
+    </section>
+
+    <section class="decorate-section my-decorations-section">
+      <h2 class="decorate-heading">My decorations – place in garden</h2>
+      <div class="place-mode-actions">
+        <button type="button" class="den-btn" id="btn-place-mode" aria-pressed="false">Place in garden</button>
+        <button type="button" class="den-btn den-btn-remove" id="btn-remove-mode" aria-pressed="false">Remove from garden</button>
+        <span class="place-mode-status" id="place-mode-status"></span>
+      </div>
+      <div class="layer-selector" id="layer-selector">
+        <span class="layer-label">Layer:</span>
+        <button type="button" class="den-btn den-btn-layer active" id="btn-layer-ground" data-layer="0">Ground</button>
+        <button type="button" class="den-btn den-btn-layer" id="btn-layer-top" data-layer="1">On top</button>
+      </div>
+      <div class="my-decorations" id="my-decorations">
+        <!-- Owned items; filled by JS -->
+      </div>
+    </section>
+  </main>
+
+  <script src="den.js"></script>
+</body>
+</html>

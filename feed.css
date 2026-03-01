@@ -1,0 +1,333 @@
+/* Feed page – Figma node 24:475 (same colors, elements, fonts) */
+:root {
+  --feed-bg: #F5F0E1;
+  --feed-primary-brown: #613E2E;
+  --feed-border-brown: #80523C;
+  --feed-text-white: #FFFFFF;
+  --feed-text-secondary: #E0E0E0;
+  --feed-critter-fill: #F3E8DB;
+  --feed-icon: #1a1a1a;
+}
+
+.feed-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--feed-bg);
+  font-family: "Press Start 2P", cursive;
+}
+
+/* Top nav: back arrow left, chat bubble right */
+.feed-header {
+  width: 100%;
+  max-width: 400px;
+  padding: 1.15rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feed-back-link {
+  color: var(--feed-icon);
+  text-decoration: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0.3rem;
+}
+
+.feed-back-link:hover {
+  opacity: 0.8;
+}
+
+.feed-chat-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--feed-icon);
+  padding: 0.3rem;
+}
+
+.feed-chat-link:hover {
+  opacity: 0.8;
+}
+
+.feed-chat-icon {
+  display: block;
+}
+
+/* Main content */
+.feed-main {
+  width: 100%;
+  max-width: 400px;
+  padding: 0 1.75rem 2.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Banners – dark reddish-brown, white text, rounded */
+.feed-banner {
+  background: var(--feed-primary-brown);
+  border-radius: 6px;
+  padding: 0.9rem 1.25rem;
+  text-align: center;
+}
+
+.feed-banner-title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.7rem;
+  color: var(--feed-text-white);
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (min-width: 380px) {
+  .feed-banner-title {
+    font-size: 0.75rem;
+  }
+}
+
+.critters-banner .feed-banner-title {
+  font-size: 0.55rem;
+}
+
+@media (min-width: 380px) {
+  .critters-banner .feed-banner-title {
+    font-size: 0.65rem;
+  }
+}
+
+/* Feed post cards (Reddit-style: title + preview; click opens popup) */
+.feed-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feed-card {
+  background: var(--feed-primary-brown);
+  border: 2px solid var(--feed-border-brown);
+  border-radius: 6px;
+  padding: 1.15rem 1.4rem;
+}
+
+.feed-card-clickable {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.feed-card-clickable:hover {
+  opacity: 0.95;
+}
+
+.feed-card-title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  color: var(--feed-text-white);
+  margin: 0 0 0.6rem 0;
+  line-height: 1.6;
+}
+
+.feed-card-desc {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.45rem;
+  color: var(--feed-text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Full post modal – centered popup over the page */
+.feed-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.feed-overlay[hidden] {
+  display: none !important;
+}
+
+.feed-overlay-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.feed-modal {
+  position: relative;
+  z-index: 1002;
+  width: 100%;
+  max-width: 380px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: var(--feed-bg);
+  border: 3px solid var(--feed-primary-brown);
+  border-radius: 10px;
+  padding: 1.75rem 1.75rem 2rem;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+}
+
+.feed-modal-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 36px;
+  height: 36px;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--feed-primary-brown);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1;
+}
+
+.feed-post-author {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.45rem;
+  color: var(--feed-primary-brown);
+  margin: 0 0 0.9rem 0;
+}
+
+.feed-post-modal-title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  color: var(--feed-primary-brown);
+  margin: 0 0 1.15rem 0;
+  line-height: 1.6;
+}
+
+.feed-post-modal-desc {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.45rem;
+  color: var(--feed-primary-brown);
+  margin: 0;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Profile modal */
+.feed-profile-modal {
+  text-align: center;
+}
+
+.feed-profile-avatar {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: var(--feed-critter-fill);
+  border: 2px solid var(--feed-primary-brown);
+  margin: 0 auto 1.15rem;
+  object-fit: cover;
+}
+
+.feed-profile-name {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.7rem;
+  color: var(--feed-primary-brown);
+  margin: 0 0 0.6rem 0;
+}
+
+.feed-profile-bio {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.45rem;
+  color: var(--feed-primary-brown);
+  margin: 0 0 1.15rem 0;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.feed-profile-study-btn {
+  display: inline-block;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.5rem;
+  padding: 0.6rem 1.15rem;
+  background: var(--feed-primary-brown);
+  color: var(--feed-text-white);
+  text-decoration: none;
+  border-radius: 6px;
+  border: 2px solid var(--feed-border-brown);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.feed-profile-study-btn:hover {
+  opacity: 0.95;
+}
+
+body.feed-modal-open {
+  overflow: hidden;
+}
+
+/* Critters Near You – spacious grid, large circles for profile pictures */
+.critters-section {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.critters-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.25rem 1.75rem;
+  justify-items: center;
+  margin-bottom: 1.75rem;
+  padding: 1.25rem 0;
+}
+
+.critter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.critter-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.6rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.critter-button:hover {
+  opacity: 0.9;
+}
+
+.critter-circle {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: var(--feed-critter-fill);
+  border: 3px solid var(--feed-primary-brown);
+  object-fit: cover;
+}
+
+@media (min-width: 380px) {
+  .critter-circle {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.critter-name {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.55rem;
+  color: var(--feed-primary-brown);
+  line-height: 1.5;
+}
+
+.feed-page .grass-strip {
+  margin-top: auto;
+}

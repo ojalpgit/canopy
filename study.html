@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study – Canopy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="study.css" />
+</head>
+<body class="study-page">
+  <header class="study-header">
+    <a href="index.html" class="back-link" aria-label="Back to home">
+      <span class="back-arrow">←</span>
+    </a>
+    <h1 class="study-title">Study</h1>
+  </header>
+
+  <main class="study-main">
+    <div class="study-plant-wrap">
+      <img src="assets/plant.svg" alt="Potted plant" class="study-plant" width="64" height="80" />
+    </div>
+
+    <!-- Step 1: Choose someone nearby -->
+    <section class="study-nearby" id="nearby-section">
+      <h2 class="study-nearby-heading">Who's nearby?</h2>
+      <p class="study-nearby-hint" id="nearby-hint">Finding people near you...</p>
+      <ul class="study-nearby-list" id="nearby-list" role="list" aria-label="Nearby users"></ul>
+    </section>
+
+    <!-- Step 2: Studying With (shown after selection) -->
+    <section class="studying-with" id="studying-with-section">
+      <h2 class="studying-with-heading">Studying With:</h2>
+      <div class="studying-avatar" id="studying-avatar" aria-hidden="true"></div>
+      <span class="studying-name" id="studying-name">Select someone above</span>
+    </section>
+
+    <!-- Start timer (shown after selection) -->
+    <button type="button" class="study-start-btn" id="start-timer-btn" hidden>
+      Start timer
+    </button>
+
+    <div class="time-elapsed-box" id="timer-box">
+      <span class="time-elapsed-label">Time Elapsed:</span>
+      <span class="time-elapsed-value" id="timer">00:00</span>
+    </div>
+  </main>
+
+  <footer class="grass-strip" aria-hidden="true"></footer>
+
+  <script>
+    (function() {
+      // Mock nearby users – replace with real API that uses geolocation/server
+      var nearbyUsers = [
+        { id: '1', name: 'Alex' },
+        { id: '2', name: 'Sam' },
+        { id: '3', name: 'Jordan' },
+        { id: '4', name: 'Riley' }
+      ];
+
+      var state = {
+        selectedId: null,
+        timerRunning: false,
+        timerStart: null
+      };
+
+      var listEl = document.getElementById('nearby-list');
+      var hintEl = document.getElementById('nearby-hint');
+      var studyingNameEl = document.getElementById('studying-name');
+      var startBtn = document.getElementById('start-timer-btn');
+      var timerEl = document.getElementById('timer');
+
+      function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+      function renderNearby() {
+        if (!listEl) return;
+        listEl.innerHTML = '';
+        hintEl.textContent = 'Tap someone to study with:';
+        hintEl.classList.remove('study-nearby-loading');
+        nearbyUsers.forEach(function(u) {
+          var li = document.createElement('li');
+          li.className = 'study-nearby-item';
+          if (state.selectedId === u.id) li.classList.add('selected');
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'study-nearby-btn';
+          btn.textContent = u.name;
+          btn.setAttribute('data-id', u.id);
+          btn.setAttribute('data-name', u.name);
+          btn.addEventListener('click', function() {
+            state.selectedId = u.id;
+            renderNearby();
+            updateStudyingWith(u.name);
+            startBtn.hidden = false;
+          });
+          li.appendChild(btn);
+          listEl.appendChild(li);
+        });
+      }
+
+      function updateStudyingWith(name) {
+        if (studyingNameEl) studyingNameEl.textContent = name || 'Select someone above';
+      }
+
+      function tick() {
+        if (!state.timerRunning || !state.timerStart || !timerEl) return;
+        var d = Math.floor((Date.now() - state.timerStart) / 1000);
+        var m = Math.floor(d / 60);
+        var s = d % 60;
+        timerEl.textContent = pad(m) + ':' + pad(s);
+      }
+
+      function startTimer() {
+        state.timerRunning = true;
+        state.timerStart = Date.now();
+        if (startBtn) {
+          startBtn.textContent = 'Timer running';
+          startBtn.disabled = true;
+        }
+        tick();
+      }
+
+      // Optional: use geolocation then show list (for real app you’d send coords to API)
+      function initNearby() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function() { renderNearby(); },
+            function() { renderNearby(); }
+          );
+        } else {
+          renderNearby();
+        }
+      }
+
+      if (startBtn) startBtn.addEventListener('click', startTimer);
+      setInterval(tick, 1000);
+
+      initNearby();
+    })();
+  </script>
+</body>
+</html>
